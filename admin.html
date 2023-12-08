@@ -5,24 +5,22 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>contact</title>
-  <script type="module" crossorigin src="/2023JS-W8-pre/assets/admin-749b7de8.js"></script>
-  <link rel="modulepreload" crossorigin href="/2023JS-W8-pre/assets/main-8ec943ba.js">
-  <link rel="stylesheet" href="/2023JS-W8-pre/assets/main-d905b07a.css">
+  <title>WOWOROOM後台</title>
+  <script type="module" crossorigin src="/2023JS-W8-pre/assets/admin-522f308d.js"></script>
+  <link rel="modulepreload" crossorigin href="/2023JS-W8-pre/assets/main-20ca5724.js">
+  <link rel="stylesheet" href="/2023JS-W8-pre/assets/main-0e832f27.css">
 </head>
 
 <body>
   <nav class="topBar">
     <div class="wrap">
-        <h1><a href="index.html" class="logo fw-bold">WOWOROOM</a></h1>
+        <h1><a href="index.html" class="logo">WOWOROOM</a></h1>
         <span class="material-icons menuToggle">
             menu
         </span>
         <ul class="topBar-menu">
-            <li><a href="#bedAdvantage">床墊優勢</a></li>
-            <li><a href="#recommendation">好評推薦</a></li>
-            <li><a href="#transport">運送方式</a></li>
-            <li><a href="#orderInfo">立即預訂</a></li>
+            <li><a href="#">後台管理</a></li>
+            <li><a href="#">管理員登入</a></li>
         </ul>
     </div>
 </nav>    <section class="wrap">
@@ -35,73 +33,75 @@
         <table class="orderPage-table">
           <thead>
             <tr>
-              <th>訂單編號</th>
-              <th>聯絡人</th>
-              <th>聯絡地址</th>
-              <th>電子郵件</th>
-              <th>訂單品項</th>
-              <th>訂單日期</th>
-              <th>訂單狀態</th>
-              <th>操作</th>
+              <th width="10%">訂單編號</th>
+              <th width="10%">聯絡人</th>
+              <th width="15%">聯絡地址</th>
+              <th width="10%">電子郵件</th>
+              <th width="20%">訂單品項</th>
+              <th width="10%">訂單日期</th>
+              <th width="10%">訂單狀態</th>
+              <th width="15%">操作</th>
             </tr>
           </thead>
-          <tr>
-            <td>10088377474</td>
-            <td>
-              <p>小杰</p>
-              <p>0912345678</p>
-            </td>
-            <td>高雄市前鎮區六合路183巷66號</td>
-            <td>cccexample@gmail.com</td>
-            <td>
-              <p>Louvre 雙人床架</p>
-            </td>
-            <td>2021/03/08</td>
-            <td class="orderStatus">
-              <a href="#">未處理</a>
-            </td>
-            <td>
-              <input type="button" class="delSingleOrder-Btn" value="刪除">
-            </td>
-          </tr>
-          <tr>
-            <td>10088377475</td>
-            <td>
-              <p>麥特</p>
-              <p>0912345678</p>
-            </td>
-            <td>桃園市平鎮區榮耀路13巷90號</td>
-            <td>wwexample@gmail.com</td>
-            <td>
-              <p>Louvre 雙人床架</p>
-            </td>
-            <td>2021/03/08</td>
-            <td class="orderStatus">
-              <a href="#">已處理</a>
-            </td>
-            <td>
-              <input type="button" class="delSingleOrder-Btn" value="刪除">
-            </td>
-          </tr>
-          <tr>
-            <td>10088377581</td>
-            <td>
-              <p>歐爾</p>
-              <p>0912345678</p>
-            </td>
-            <td>高雄市苓雅區武廟路22巷188號</td>
-            <td>68example@gmail.com</td>
-            <td>
-              <p>Louvre 雙人床架</p>
-            </td>
-            <td>2021/03/08</td>
-            <td class="orderStatus">
-              <a href="#">未處理</a>
-            </td>
-            <td>
-              <input type="button" class="delSingleOrder-Btn" value="刪除">
-            </td>
-          </tr>
+          <tbody class="js-orderList">
+            <!-- <tr>
+              <td>10088377474</td>
+              <td>
+                <p>小杰</p>
+                <p>0912345678</p>
+              </td>
+              <td>高雄市前鎮區六合路183巷66號</td>
+              <td>cccexample@gmail.com</td>
+              <td>
+                <p>Louvre 雙人床架</p>
+              </td>
+              <td>2021/03/08</td>
+              <td class="orderStatus">
+                <a href="#">未處理</a>
+              </td>
+              <td>
+                <input type="button" class="delSingleOrder-Btn" value="刪除">
+              </td>
+            </tr>
+            <tr>
+              <td>10088377475</td>
+              <td>
+                <p>麥特</p>
+                <p>0912345678</p>
+              </td>
+              <td>桃園市平鎮區榮耀路13巷90號</td>
+              <td>wwexample@gmail.com</td>
+              <td>
+                <p>Louvre 雙人床架</p>
+              </td>
+              <td>2021/03/08</td>
+              <td class="orderStatus">
+                <a href="#">已處理</a>
+              </td>
+              <td>
+                <input type="button" class="delSingleOrder-Btn" value="刪除">
+              </td>
+            </tr>
+            <tr>
+              <td>10088377581</td>
+              <td>
+                <p>歐爾</p>
+                <p>0912345678</p>
+              </td>
+              <td>高雄市苓雅區武廟路22巷188號</td>
+              <td>68example@gmail.com</td>
+              <td>
+                <p>Louvre 雙人床架</p>
+              </td>
+              <td>2021/03/08</td>
+              <td class="orderStatus">
+                <a href="#">未處理</a>
+              </td>
+              <td>
+                <input type="button" class="delSingleOrder-Btn" value="刪除">
+              </td>
+            </tr> -->
+          </tbody>
         </table>
       </div>
     </section>
