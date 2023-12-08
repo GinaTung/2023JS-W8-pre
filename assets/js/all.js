@@ -139,7 +139,8 @@ function getCartList() {
         <td>NT$${item.product.price * item.quantity}</td>
         <td class="discardBtn">
           <a href="#" class="material-icons" data-id="${item.id}" data-title="${
-          item.product.title}" data-cart-num="${item.quantity}">
+          item.product.title
+        }" data-cart-num="${item.quantity}">
             clear
           </a>
         </td>
@@ -168,7 +169,9 @@ function deleteCartItem() {
       .delete(`${api_url}/${api_path}/carts/${cartId}`)
       .then(function (response) {
         console.log(response);
-        alert(`刪除單筆購物車資料成功：${cartProductTitle} ${cartProductNum}個`);
+        alert(
+          `刪除單筆購物車資料成功：${cartProductTitle} ${cartProductNum}個`
+        );
         getCartList();
       })
       .catch(function (error) {
@@ -199,14 +202,59 @@ function deleteAllCarts() {
 deleteAllCarts();
 
 //送出訂單
-const orderInfobtn =document.querySelector(".orderInfo-btn");
-orderInfobtn.addEventListener("click",function(e){
+const orderInfobtn = document.querySelector(".orderInfo-btn");
+orderInfobtn.addEventListener("click", function (e) {
   e.preventDefault();
   console.log(e.target);
-  if(cartData.length === 0 ){
+  if (cartData.length === 0) {
     alert("請加入購物車");
-    return
-  }else{
-    alert("你購物車有資料，填寫正確")
+    return;
   }
-})
+  const customerName = document.querySelector("#customerName").value;
+  const customerPhone = document.querySelector("#customerPhone").value;
+  const customerEmail = document.querySelector("#customerEmail").value;
+  const customerAddress = document.querySelector("#customerAddress").value;
+  const customerTradeWay = document.querySelector("#tradeWay").value;
+  console.log(
+    customerName,
+    customerPhone,
+    customerAddress,
+    customerEmail,
+    customerTradeWay
+  );
+  if (
+    customerName === "" ||
+    customerPhone === "" ||
+    customerAddress === "" ||
+    customerEmail === "" ||
+    customerTradeWay === ""
+  ) {
+    alert("請輸入訂單資訊");
+    return;
+  }
+  axios
+    .post(`${api_url}/${api_path}/orders`, {
+      data: {
+        user: {
+          name: customerName,
+          tel: customerPhone,
+          email: customerEmail,
+          address: customerAddress,
+          payment: customerTradeWay,
+        },
+      },
+    })
+    .then(function (response) {
+      alert("訂單建立成功");
+      document.querySelector("#customerName").value = "";
+      document.querySelector("#customerPhone").value = "";
+      document.querySelector("#customerEmail").value = "";
+      document.querySelector("#customerAddress").value = "";
+      document.querySelector("#tradeWay").value = "ATM";
+      getCartList();
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert(`${error.response.status}錯誤`);
+    });
+});
