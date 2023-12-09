@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WOWOROOM後台</title>
-  <script type="module" crossorigin src="/2023JS-W8-pre/assets/admin-522f308d.js"></script>
-  <link rel="modulepreload" crossorigin href="/2023JS-W8-pre/assets/main-20ca5724.js">
-  <link rel="stylesheet" href="/2023JS-W8-pre/assets/main-0e832f27.css">
+  <script type="module" crossorigin src="/2023JS-W8-pre/assets/admin-c7041ae0.js"></script>
+  <link rel="modulepreload" crossorigin href="/2023JS-W8-pre/assets/main-877d79b8.js">
+  <link rel="stylesheet" href="/2023JS-W8-pre/assets/main-fbbe2ee8.css">
 </head>
 
 <body>
@@ -23,9 +23,162 @@
             <li><a href="#">管理員登入</a></li>
         </ul>
     </div>
-</nav>    <section class="wrap">
-      <h2 class="section-title">全品項營收比重</h2>
-      <div id="chart"></div>
+</nav>    <!-- <section class="wrap">
+      <h2 class="section-title">全產品類別營收比重</h2>
+      <div id="chart2">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          style="margin:auto;background:#fff;display:block;" width="500px" height="500px" viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid">
+          <circle cx="84" cy="50" r="10" fill="#e15b64">
+            <animate attributeName="r" repeatCount="indefinite" dur="0.8333333333333334s" calcMode="spline"
+              keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+            <animate attributeName="fill" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="discrete"
+              keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+          </circle>
+          <circle cx="16" cy="50" r="10" fill="#e15b64">
+            <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+            <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+          </circle>
+          <circle cx="50" cy="50" r="10" fill="#f47e60">
+            <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+            <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+          </circle>
+          <circle cx="84" cy="50" r="10" fill="#f8b26a">
+            <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+            <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+          </circle>
+          <circle cx="16" cy="50" r="10" fill="#abbd81">
+            <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+            <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+              keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+              keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+          </circle>
+        </svg>
+      </div>
+    </section> -->
+    <section class="wrap">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+            role="tab" aria-controls="home" aria-selected="true">全產品類別營收比重</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+            role="tab" aria-controls="profile" aria-selected="false">全品項營收比重</button>
+        </li>
+      </ul>
+      <div class="tab-content mw-100" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"
+          style="min-height: 500px;">
+          <h2 class="section-title mt-2">全產品類別營收比重</h2>
+          <div id="chart">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              style="margin:auto;background:#fff;display:block;" width="500px" height="500px" viewBox="0 0 100 100"
+              preserveAspectRatio="xMidYMid">
+              <circle cx="84" cy="50" r="10" fill="#e15b64">
+                <animate attributeName="r" repeatCount="indefinite" dur="0.8333333333333334s" calcMode="spline"
+                  keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="fill" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="discrete"
+                  keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+              </circle>
+              <circle cx="16" cy="50" r="10" fill="#e15b64">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+              </circle>
+              <circle cx="50" cy="50" r="10" fill="#f47e60">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+              </circle>
+              <circle cx="84" cy="50" r="10" fill="#f8b26a">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+              </circle>
+              <circle cx="16" cy="50" r="10" fill="#abbd81">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+              </circle>
+            </svg>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"
+          style="min-height: 500px;">
+          <h2 class="section-title mt-2">全品項營收比重</h2>
+          <div id="chart2">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              style="margin:auto;background:#fff;display:block;" width="500px" height="500px" viewBox="0 0 100 100"
+              preserveAspectRatio="xMidYMid">
+              <circle cx="84" cy="50" r="10" fill="#e15b64">
+                <animate attributeName="r" repeatCount="indefinite" dur="0.8333333333333334s" calcMode="spline"
+                  keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="fill" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="discrete"
+                  keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+              </circle>
+              <circle cx="16" cy="50" r="10" fill="#e15b64">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+              </circle>
+              <circle cx="50" cy="50" r="10" fill="#f47e60">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.8333333333333334s"></animate>
+              </circle>
+              <circle cx="84" cy="50" r="10" fill="#f8b26a">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.6666666666666667s"></animate>
+              </circle>
+              <circle cx="16" cy="50" r="10" fill="#abbd81">
+                <animate attributeName="r" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="3.3333333333333335s" calcMode="spline"
+                  keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                  keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-2.5s"></animate>
+              </circle>
+            </svg>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="wrap orderPage-list">
       <a href="#" class="discardAllBtn">清除全部訂單</a>
@@ -44,63 +197,7 @@
             </tr>
           </thead>
           <tbody class="js-orderList">
-            <!-- <tr>
-              <td>10088377474</td>
-              <td>
-                <p>小杰</p>
-                <p>0912345678</p>
-              </td>
-              <td>高雄市前鎮區六合路183巷66號</td>
-              <td>cccexample@gmail.com</td>
-              <td>
-                <p>Louvre 雙人床架</p>
-              </td>
-              <td>2021/03/08</td>
-              <td class="orderStatus">
-                <a href="#">未處理</a>
-              </td>
-              <td>
-                <input type="button" class="delSingleOrder-Btn" value="刪除">
-              </td>
-            </tr>
-            <tr>
-              <td>10088377475</td>
-              <td>
-                <p>麥特</p>
-                <p>0912345678</p>
-              </td>
-              <td>桃園市平鎮區榮耀路13巷90號</td>
-              <td>wwexample@gmail.com</td>
-              <td>
-                <p>Louvre 雙人床架</p>
-              </td>
-              <td>2021/03/08</td>
-              <td class="orderStatus">
-                <a href="#">已處理</a>
-              </td>
-              <td>
-                <input type="button" class="delSingleOrder-Btn" value="刪除">
-              </td>
-            </tr>
-            <tr>
-              <td>10088377581</td>
-              <td>
-                <p>歐爾</p>
-                <p>0912345678</p>
-              </td>
-              <td>高雄市苓雅區武廟路22巷188號</td>
-              <td>68example@gmail.com</td>
-              <td>
-                <p>Louvre 雙人床架</p>
-              </td>
-              <td>2021/03/08</td>
-              <td class="orderStatus">
-                <a href="#">未處理</a>
-              </td>
-              <td>
-                <input type="button" class="delSingleOrder-Btn" value="刪除">
-              </td>
-            </tr> -->
+
           </tbody>
         </table>
       </div>
@@ -108,7 +205,13 @@
     <footer class="bg-light text-center p-3 d-flex justify-content-between">
     <p>六角第八、九週作業</p>
     <a href="admin.html">後台管理</a>
-</footer>      <script>
+</footer>      <style>
+        #chart6 svg {
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <script>
         // 預設 JS，請同學不要修改此處
         let menuOpenBtn = document.querySelector('.menuToggle');
         let linkBtn = document.querySelectorAll('.topBar-menu a');
