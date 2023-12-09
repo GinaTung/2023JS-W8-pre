@@ -2,7 +2,7 @@ import { token, api_url2, api_path } from "./config.js";
 // https://livejs-api.hexschool.io/api/livejs/v1/admin/yuling-2023js/orders
 let orderData = [];
 const orderList = document.querySelector(".js-orderList");
-const discardAllBtn =document.querySelector(".discardAllBtn");
+const discardAllBtn = document.querySelector(".discardAllBtn");
 //畫面初始化
 function init() {
   getOrderList();
@@ -62,6 +62,7 @@ function getOrderList() {
       });
       orderList.innerHTML = str;
       renderC3();
+      renderC3_LV2();
     })
     .catch(function (error) {
       console.log(error);
@@ -83,8 +84,8 @@ function renderC3() {
   //作資料關聯
   //物件轉陣列
   let categoryAry = Object.keys(total);
-//   console.log(categoryAry);
-//陣列轉陣列
+  //   console.log(categoryAry);
+  //陣列轉陣列
   let newData = [];
   categoryAry.forEach((item) => {
     let ary = [];
@@ -92,19 +93,75 @@ function renderC3() {
     ary.push(total[item]);
     newData.push(ary);
   });
-//   console.log(newData);
+  //   console.log(newData);
   let chart = c3.generate({
     bindto: "#chart", // HTML 元素綁定
     data: {
       type: "pie",
       columns: newData,
-      colors: {
-        "Louvre 雙人床架": "#DACBFF",
-        "Antony 雙人床架": "#9D7FEA",
-        "Anty 雙人床架": "#5434A7",
-        其他: "#301E5F",
-      },
     },
+    color: {
+      pattern: ['#301E5F' , '#5434A7', '#DACBFF', '#9D7FEA' ]
+  }
+  });
+}
+function renderC3_LV2() {
+  let total2 = {};
+  console.log(orderData);
+  orderData.forEach((item) => {
+    item.products.forEach((productItem) => {
+      console.log(productItem.price);
+      if (total2[productItem.title] == undefined) {
+        total2[productItem.title] = productItem.price * productItem.quantity;
+      } else {
+        total2[productItem.title] += productItem.price * productItem.quantity;
+      }
+    });
+  });
+  // console.log(total2);
+  // 作資料關聯
+  // 物件轉陣列
+  let originAry = Object.keys(total2);
+  console.log(originAry);
+  //陣列轉陣列=>轉C3格式
+  let rankSortAry = [];
+  originAry.forEach((item) => {
+    let ary = [];
+    ary.push(item);
+    ary.push(total2[item]);
+    rankSortAry.push(ary);
+  });
+  console.log(rankSortAry);
+  rankSortAry.sort(function (a, b) {
+    //遞增
+    //a[1]=>數字1是指取出陣列裡價格數值，它的位置是1
+    return b[1] - a[1];
+  });
+
+  // 若筆數超過四筆以上，就統整為其他
+  if (rankSortAry.length > 3) {
+    //記錄第四筆(含)以上產品總額加總金額
+    let otherTotal = 0;
+    rankSortAry.forEach(function (item, index) {
+      //判斷從第四筆資料，若為第四筆開始加總
+      //加總數值要從ranlSortAry找第四個位置陣列裡第2個位置數值進行加總，賦予otherTotal
+      if (index > 2) {
+        otherTotal += rankSortAry[index][1];
+      }
+    });
+    //先刪除位置為第四筆起的資料，再新增第四筆其他
+    rankSortAry.splice(3, rankSortAry.length - 1);
+    rankSortAry.push(["其他", otherTotal]);
+  }
+  let chart2 = c3.generate({
+    bindto: "#chart2", // HTML 元素綁定
+    data: {
+      type: "pie",
+      columns: rankSortAry,
+    },
+    color: {
+      pattern: ['#301E5F' , '#5434A7', '#DACBFF', '#9D7FEA' ]
+  }
   });
 }
 //監聽訂單列表狀態(刪除按鈕及資料狀態)
@@ -164,7 +221,7 @@ function changeOrderStatus(status, id) {
 }
 //刪除訂單按鈕
 function deleteOrderItem(id) {
-//   console.log(id);
+  //   console.log(id);
   axios
     .delete(`${api_url2}/admin/${api_path}/orders/${id}`, {
       headers: {
@@ -183,22 +240,22 @@ function deleteOrderItem(id) {
 }
 
 //刪除全部訂單按鈕
-function deleteAllItem(){
-    discardAllBtn.addEventListener("click",function(e){
-        axios
-        .delete(`${api_url2}/admin/${api_path}/orders`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then(function (response) {
-          alert("刪除全部訂單成功");
-          getOrderList();
-        })
-        .catch(function (error) {
-          console.log(error);
-          alert(`${error.response.status}錯誤`);
-        });
-    })
+function deleteAllItem() {
+  discardAllBtn.addEventListener("click", function (e) {
+    axios
+      .delete(`${api_url2}/admin/${api_path}/orders`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(function (response) {
+        alert("刪除全部訂單成功");
+        getOrderList();
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert(`${error.response.status}錯誤`);
+      });
+  });
 }
 deleteAllItem();

@@ -39,8 +39,8 @@ function combineProductHTMLItem(item) {
   alt="${item.title}">
   <a href="#" class="addCardBtn js-addCart" data-id="${item.id}">加入購物車</a>
   <h3>${item.title}</h3>
-  <del class="originPrice">NT$${item.origin_price}</del>
-  <p class="nowPrice">NT$${item.price}</p>
+  <del class="originPrice">NT$${toRhousands(item.origin_price)}</del>
+  <p class="nowPrice">NT$${toRhousands(item.price)}</p>
   </li>`;
 }
 //渲染
@@ -116,7 +116,7 @@ function getCartList() {
       cartData = response.data.carts;
       console.log(response.data);
       document.querySelector(".js-finalTotal").textContent =
-        response.data.finalTotal;
+      toRhousands(response.data.finalTotal);
       let str = "";
       if (cartData.length === 0) {
         str = `
@@ -134,9 +134,9 @@ function getCartList() {
             <p>${item.product.title}</p>
           </div>
         </td>
-        <td>NT$${item.product.price}</td>
+        <td>NT$${toRhousands(item.product.price)}</td>
         <td>${item.quantity}</td>
-        <td>NT$${item.product.price * item.quantity}</td>
+        <td>NT$${toRhousands(item.product.price * item.quantity)}</td>
         <td class="discardBtn">
           <a href="#" class="material-icons" data-id="${item.id}" data-title="${
           item.product.title
@@ -232,6 +232,11 @@ orderInfobtn.addEventListener("click", function (e) {
     alert("請輸入訂單資訊");
     return;
   }
+  //判斷Email是否填寫正確
+  if(validateEmail(customerEmail) == false){
+    alert("請填寫正確的Email")
+    return
+  }
   axios
     .post(`${api_url}/${api_path}/orders`, {
       data: {
@@ -258,3 +263,112 @@ orderInfobtn.addEventListener("click", function (e) {
       alert(`${error.response.status}錯誤`);
     });
 });
+
+//監聽姓名
+const customerName = document.querySelector("#customerName");
+customerName.addEventListener("blur",function(e){
+  if(validateName(customerName.value) == false){
+    document.querySelector(`[data-message=姓名]`).innerHTML = `<div class="d-flex justify-content-cneter text-danger"><span class="material-symbols-outlined">
+    error
+    </span> 請填寫正確中文姓名格式</div>`;
+  }else{
+    document.querySelector(`[data-message=姓名]`).innerHTML = `<div class="d-flex justify-content-cneter text-success"><span class="material-symbols-outlined text-success">
+    check
+    </span> 已填寫正確</div>`;
+    return
+  }
+})
+
+//監聽Email欄位
+//判斷Email是否填寫正確，點選旁邊即可觸發
+const customerEmail = document.querySelector("#customerEmail");
+//聽為blur移開觸發(驗證電郵錯誤)
+customerEmail.addEventListener("blur",function(e){
+  if(validateEmail(customerEmail.value) == false){
+    document.querySelector(`[data-message=Email]`).innerHTML = `<div class="d-flex justify-content-cneter text-danger"><span class="material-symbols-outlined">
+    error
+    </span> 請填寫正確Email格式</div>`;
+    return
+  }else{
+    document.querySelector(`[data-message=Email]`).innerHTML = `<div class="d-flex justify-content-cneter text-success"><span class="material-symbols-outlined text-success">
+    check
+    </span> 已填寫正確</div>`;
+    return
+  }
+})
+//監聽電話
+const customerPhone = document.querySelector("#customerPhone");
+customerPhone.addEventListener("blur",function(e){
+  if(validatePhone(customerPhone.value) ==false){
+    document.querySelector(`[data-message=電話]`).innerHTML = `<div class="d-flex justify-content-cneter text-danger"><span class="material-symbols-outlined">
+    error
+    </span> 請填寫正確電話格式</div>`;
+    return
+  }else{
+    document.querySelector(`[data-message=電話]`).innerHTML = `<div class="d-flex justify-content-cneter text-success"><span class="material-symbols-outlined text-success">
+    check</span> 已填寫正確</div>`;
+    return
+  }
+})
+//監聽地址
+const customerAddress = document.querySelector("#customerAddress");
+customerAddress.addEventListener("blur",function(e){
+  if(validateAddress(customerAddress.value) ==false){
+    document.querySelector(`[data-message=寄送地址]`).innerHTML = `<div class="d-flex justify-content-cneter text-danger"><span class="material-symbols-outlined">
+    error
+    </span> 請填寫正確地址格式</div>`;
+    return
+  }else{
+    document.querySelector(`[data-message=寄送地址]`).innerHTML = `<div class="d-flex justify-content-cneter text-success"><span class="material-symbols-outlined text-success">
+    check</span> 已填寫正確</div>`;
+    return
+  }
+})
+
+//util js 千分位
+function toRhousands(x) {
+  let parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+}
+
+//判斷Email是否填寫正確，點選送出訂單按鈕觸發
+function validateEmail(mail) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return true
+  }
+    return false
+}
+
+//判斷手機號碼是否填寫正確，點選送出訂單按鈕觸發
+function validatePhone(phone) 
+{
+ if (/^09\d{8}$/.test(phone))
+  {
+    return true
+  }
+    return false
+}
+//中文名字
+function validateName(name) 
+{
+ if (/^[\u4e00-\u9fa5]{2,4}$/.test(name))
+  {
+    return true
+  }
+    return false
+}
+
+
+//地址
+function validateAddress(address) 
+{
+  const taiwanAddressRegex = /^(台灣省|臺灣省|台灣|臺灣|台北市|新北市|基隆市|宜蘭縣|桃園市|新竹市|新竹縣|苗栗縣|台中市|臺中市|彰化縣|南投縣|嘉義市|嘉義縣|台南市|臺南市|高雄市|屏東縣|台東縣|花蓮縣|澎湖縣|金門縣|連江縣)(?:\S{1,2}[市縣]\S{1,10}[鄉鎮市區]\S{1,10}[村里]\S{1,10})?/;
+ if (taiwanAddressRegex.test(address))
+  {
+    return true
+  }
+    return false
+}
