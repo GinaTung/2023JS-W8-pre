@@ -222,6 +222,18 @@ orderInfobtn.addEventListener("click", function (e) {
     alert("請填寫正確的Email")
     return
   }
+  if(validateName(customerName) == false){
+    alert("請填寫正確的中文姓名")
+    return
+  }
+  if(validatePhone(customerPhone) == false){
+    alert("請填寫正確的電話")
+    return
+  }
+  if(validateAddress(customerAddress) == false){
+    alert("請填寫正確的地址")
+    return
+  }
   axios
     .post(`${api_url}/${api_path}/orders`, {
       data: {
@@ -353,7 +365,7 @@ function validateName(name)
 //地址
 function validateAddress(address) 
 {
-  const taiwanAddressRegex = /^(台灣省|臺灣省|台灣|臺灣|台北市|新北市|基隆市|宜蘭縣|桃園市|新竹市|新竹縣|苗栗縣|台中市|臺中市|彰化縣|南投縣|嘉義市|嘉義縣|台南市|臺南市|高雄市|屏東縣|台東縣|花蓮縣|澎湖縣|金門縣|連江縣)(?:\S{1,2}[市縣]\S{1,10}[鄉鎮市區]\S{1,10}[村里]\S{1,10})?/;
+  const taiwanAddressRegex = /^(台灣省|臺灣省|台灣|臺灣|台北市|新北市|基隆市|宜蘭縣|桃園市|新竹市|新竹縣|苗栗縣|台中市|臺中市|彰化縣|南投縣|嘉義市|嘉義縣|台南市|臺南市|高雄市|屏東縣|台東縣|花蓮縣|澎湖縣|金門縣|連江縣|雲林縣)(?:\S{1,2}[市縣]\S{1,10}[鄉鎮市區]\S{1,10}[村里]\S{1,10})?/;
  if (taiwanAddressRegex.test(address))
   {
     return true
