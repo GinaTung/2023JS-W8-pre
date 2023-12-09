@@ -21,12 +21,11 @@ function getProductList() {
     .then(function (response) {
       // console.log(response);
       productData = response.data.products;
-      console.log(productData);
       renderProducts();
       changeProducts();
     })
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 }
@@ -54,7 +53,7 @@ function renderProducts() {
 //監聽篩選
 function changeProducts() {
   productSelect.addEventListener("change", function (e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (e.target.value === "全部") {
       renderProducts();
       return;
@@ -79,7 +78,7 @@ productList.addEventListener("click", function (e) {
   }
   //點選加入購物車按鈕後產生產品ID
   let productId = e.target.getAttribute("data-id");
-  console.log(productId);
+  // console.log(productId);
 
   //加入購物車數量增加
   let checkNum = 1;
@@ -89,7 +88,7 @@ productList.addEventListener("click", function (e) {
       checkNum = item.quantity + 1;
     }
   });
-  console.log(checkNum);
+  // console.log(checkNum);
 
   axios
     .post(`${api_url}/${api_path}/carts`, {
@@ -99,12 +98,11 @@ productList.addEventListener("click", function (e) {
       },
     })
     .then(function (response) {
-      console.log(response);
       alert("加入購物車!");
       getCartList();
     })
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 });
@@ -114,7 +112,6 @@ function getCartList() {
     .get(`${api_url}/${api_path}/carts`)
     .then(function (response) {
       cartData = response.data.carts;
-      console.log(response.data);
       document.querySelector(".js-finalTotal").textContent =
       toRhousands(response.data.finalTotal);
       let str = "";
@@ -150,7 +147,7 @@ function getCartList() {
       cartList.innerHTML = str;
     })
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
       alert(`${error.response.status} 錯誤`);
     });
 }
@@ -161,21 +158,20 @@ function deleteCartItem() {
     let cartId = e.target.getAttribute("data-id");
     let cartProductTitle = e.target.getAttribute("data-title");
     let cartProductNum = e.target.getAttribute("data-cart-num");
-    console.log(cartProductNum);
+    // console.log(cartProductNum);
     if (cartId === null) {
       alert("你點到其他地方了");
     }
     axios
       .delete(`${api_url}/${api_path}/carts/${cartId}`)
       .then(function (response) {
-        console.log(response);
         alert(
           `刪除單筆購物車資料成功：${cartProductTitle} ${cartProductNum}個`
         );
         getCartList();
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
         alert(`${error.response.status}錯誤`);
       });
   });
@@ -185,16 +181,13 @@ deleteCartItem();
 function deleteAllCarts() {
   discardAllBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log(e.target);
     axios
       .delete(`${api_url}/${api_path}/carts`)
       .then(function (response) {
-        console.log(response);
         alert(`刪除全部購物車資料成功`);
         getCartList();
       })
       .catch(function (error) {
-        console.log(error);
         alert("購物車已清空，請勿重複點擊");
       });
   });
@@ -205,7 +198,6 @@ deleteAllCarts();
 const orderInfobtn = document.querySelector(".orderInfo-btn");
 orderInfobtn.addEventListener("click", function (e) {
   e.preventDefault();
-  console.log(e.target);
   if (cartData.length === 0) {
     alert("請加入購物車");
     return;
@@ -215,13 +207,6 @@ orderInfobtn.addEventListener("click", function (e) {
   const customerEmail = document.querySelector("#customerEmail").value;
   const customerAddress = document.querySelector("#customerAddress").value;
   const customerTradeWay = document.querySelector("#tradeWay").value;
-  console.log(
-    customerName,
-    customerPhone,
-    customerAddress,
-    customerEmail,
-    customerTradeWay
-  );
   if (
     customerName === "" ||
     customerPhone === "" ||
@@ -235,6 +220,18 @@ orderInfobtn.addEventListener("click", function (e) {
   //判斷Email是否填寫正確
   if(validateEmail(customerEmail) == false){
     alert("請填寫正確的Email")
+    return
+  }
+  if(validateName(customerName) == false){
+    alert("請填寫正確的中文姓名")
+    return
+  }
+  if(validatePhone(customerPhone) == false){
+    alert("請填寫正確的電話")
+    return
+  }
+  if(validateAddress(customerAddress) == false){
+    alert("請填寫正確的地址")
     return
   }
   axios
@@ -256,10 +253,13 @@ orderInfobtn.addEventListener("click", function (e) {
       document.querySelector("#customerEmail").value = "";
       document.querySelector("#customerAddress").value = "";
       document.querySelector("#tradeWay").value = "ATM";
+      document.querySelector(`[data-message=姓名]`).innerHTML = "";
+      document.querySelector(`[data-message=電話]`).innerHTML = "";
+      document.querySelector(`[data-message=Email]`).innerHTML = "";
+      document.querySelector(`[data-message=寄送地址]`).innerHTML = "";
       getCartList();
     })
     .catch(function (error) {
-      console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 });
@@ -365,7 +365,7 @@ function validateName(name)
 //地址
 function validateAddress(address) 
 {
-  const taiwanAddressRegex = /^(台灣省|臺灣省|台灣|臺灣|台北市|新北市|基隆市|宜蘭縣|桃園市|新竹市|新竹縣|苗栗縣|台中市|臺中市|彰化縣|南投縣|嘉義市|嘉義縣|台南市|臺南市|高雄市|屏東縣|台東縣|花蓮縣|澎湖縣|金門縣|連江縣)(?:\S{1,2}[市縣]\S{1,10}[鄉鎮市區]\S{1,10}[村里]\S{1,10})?/;
+  const taiwanAddressRegex = /^(台灣省|臺灣省|台灣|臺灣|台北市|新北市|基隆市|宜蘭縣|桃園市|新竹市|新竹縣|苗栗縣|台中市|臺中市|彰化縣|南投縣|嘉義市|嘉義縣|台南市|臺南市|高雄市|屏東縣|台東縣|花蓮縣|澎湖縣|金門縣|連江縣|雲林縣)(?:\S{1,2}[市縣]\S{1,10}[鄉鎮市區]\S{1,10}[村里]\S{1,10})?/;
  if (taiwanAddressRegex.test(address))
   {
     return true
