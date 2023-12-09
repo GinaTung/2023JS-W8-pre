@@ -65,7 +65,7 @@ function getOrderList() {
       renderC3_LV2();
     })
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 }
@@ -80,7 +80,7 @@ function renderC3() {
       }
     });
   });
-  console.log(total);
+  // console.log(total);
   //作資料關聯
   //物件轉陣列
   let categoryAry = Object.keys(total);
@@ -107,10 +107,9 @@ function renderC3() {
 }
 function renderC3_LV2() {
   let total2 = {};
-  console.log(orderData);
+  // console.log(orderData);
   orderData.forEach((item) => {
     item.products.forEach((productItem) => {
-      console.log(productItem.price);
       if (total2[productItem.title] == undefined) {
         total2[productItem.title] = productItem.price * productItem.quantity;
       } else {
@@ -122,7 +121,7 @@ function renderC3_LV2() {
   // 作資料關聯
   // 物件轉陣列
   let originAry = Object.keys(total2);
-  console.log(originAry);
+  // console.log(originAry);
   //陣列轉陣列=>轉C3格式
   let rankSortAry = [];
   originAry.forEach((item) => {
@@ -131,7 +130,7 @@ function renderC3_LV2() {
     ary.push(total2[item]);
     rankSortAry.push(ary);
   });
-  console.log(rankSortAry);
+  // console.log(rankSortAry);
   rankSortAry.sort(function (a, b) {
     //遞增
     //a[1]=>數字1是指取出陣列裡價格數值，它的位置是1
@@ -209,13 +208,11 @@ function changeOrderStatus(status, id) {
       }
     )
     .then(function (response) {
-      console.log(response);
       alert("修改訂單成功");
       getOrderList();
       return;
     })
     .catch(function (error) {
-      console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 }
@@ -229,12 +226,10 @@ function deleteOrderItem(id) {
       },
     })
     .then(function (response) {
-      console.log(response);
       alert("刪除該筆訂單成功");
       getOrderList();
     })
     .catch(function (error) {
-      console.log(error);
       alert(`${error.response.status}錯誤`);
     });
 }
@@ -253,7 +248,6 @@ function deleteAllItem() {
         getOrderList();
       })
       .catch(function (error) {
-        console.log(error);
         alert(`${error.response.status}錯誤`);
       });
   });
